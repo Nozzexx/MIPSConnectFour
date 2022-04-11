@@ -11,25 +11,34 @@ Zaxmaya
 
 
 Assignment Instructions:
+
 Topic
+
 The topic for the team project this semester is the Connect Four game. 
+
 For a feel of the game visit   
 https://www.mathsisfun.com/games/connect4.html
+
 For a reference of the game with ASCII board visit
 http://board8.wikia.com/wiki/Connect_4
+
 Note: MARS does not have a graphics capability so ASCII board is sufficient.
+
 Minimum requirements for the program:
-The game is for two players: the user v.s. the computer.
-The user input (keystrokes) is minimum during each turn that the user takes.
-The ASCII board as shown in the link http://board8.wikia.com/wiki/Connect_4  is the minimum requirement. Creative ways to display the board, e.g. with graphic, will earn the team extra credits.
-Implementation of a winning strategy by the computer is not required.
-All moves by the user and the computer MUST be valid according to the rules of the game.
-An error message is displayed to explain the rule that was violated if a move by the user was not valid.
+- The game is for two players: the user v.s. the computer.
+- The user input (keystrokes) is minimum during each turn that the user takes.
+- The ASCII board as shown in the link http://board8.wikia.com/wiki/Connect_4  is the minimum requirement. Creative ways to display the board, e.g. with graphic, will earn the team extra credits.
+- Implementation of a winning strategy by the computer is not required.
+- All moves by the user and the computer MUST be valid according to the rules of the game.
+- An error message is displayed to explain the rule that was violated if a move by the user was not valid.
+
 Extra credits will be given for:
-A winning strategy for the computer is implemented and documented.
-Graphic and sound
+- A winning strategy for the computer is implemented and documented.
+- Graphic and sound
 These extra credit features MUST be documented in your report and explained well to unlock these extra credits.
+
 Submission Requirements:
+
 At the end of the semester by the due date, EACH student must submit a ZIP file containing
 1. A project report (in Word format) covering
    a) a description of the program,
