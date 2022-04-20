@@ -3,7 +3,7 @@
 	introMessage: 	    .asciiz "Welcome to MIPS Connect 4! This game is meant for one player versus a computer.\n"
 	selectMessage:		.asciiz "\nPlease select an option from the menu below:"
 	selectionMenu:		.asciiz "\n  1. New Game\n  2. Game Rules\n  3. Exit Game"
-	inputCharacter:		.asciiz "\n\n>: "
+	inputCharacter:		.asciiz "\nPlease pick a column\n>: "
 	gameRulesMessage:	.asciiz "\n     Hello and welcome to MIPS connect 4. Playing this game is quite simple. \n The objective is to fill four slots either horizontally, vertically, or diagonally. \n Your opponent is also trying to do the same and will work to try and interupt you. \n Simply choose a column to drop your token and the board will update to reflect \n your tokens location after it has 'fallen' down the column."
 	returnMessage:		.asciiz "\n\n Enter '0' to return to the main menu."
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -13,7 +13,7 @@
 	TurnLabel:		.asciiz "\n Turn Count: "
 	TurnCounter:		.word 0
 	
-
+	GameBoardRow0:		.asciiz "\n\n    1   2   3   4   5   6   7"
 	GameBoardRow1: 		.asciiz "\n\n  | _ | _ | _ | _ | _ | _ | _ |"
 	GameBoardRow2:		.asciiz "\n  | _ | _ | _ | _ | _ | _ | _ |"
 	GameBoardRow3:		.asciiz "\n  | _ | _ | _ | _ | _ | _ | _ |"
@@ -81,6 +81,10 @@ NewGame:
 	
 	li $v0, 4
 	la $a0, TurnCounter
+	syscall
+	
+	li $v0, 4
+	la $a0, GameBoardRow0
 	syscall
 	
 	li $v0, 4
