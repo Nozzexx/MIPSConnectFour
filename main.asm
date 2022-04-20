@@ -14,7 +14,7 @@
 	TurnCounter:		.word 0
 	
 	GameBoardRow0:		.asciiz "\n\n    1   2   3   4   5   6   7"
-	GameBoardRow1: 		.asciiz "\n\n  | _ | _ | _ | _ | _ | _ | _ |"
+	GameBoardRow1: 		.asciiz "\n  | _ | _ | _ | _ | _ | _ | _ |"
 	GameBoardRow2:		.asciiz "\n  | _ | _ | _ | _ | _ | _ | _ |"
 	GameBoardRow3:		.asciiz "\n  | _ | _ | _ | _ | _ | _ | _ |"
 	GameBoardRow4:		.asciiz "\n  | _ | _ | _ | _ | _ | _ | _ |"
