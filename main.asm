@@ -1,15 +1,16 @@
 .data
 	dividerLine:		.asciiz "\n-------------------------------------------------------------------------------------------------"
-	introMessage: 	    .asciiz "Welcome to MIPS Connect 4! This game is meant for one player versus a computer.\n"
+	introMessage: 	    	.asciiz "Welcome to MIPS Connect 4! This game is meant for one player versus a computer.\n"
 	selectMessage:		.asciiz "\nPlease select an option from the menu below:"
 	selectionMenu:		.asciiz "\n  1. New Game\n  2. Game Rules\n  3. Exit Game"
-	inputCharacter:		.asciiz "\nPlease pick a column\n>: "
+	menuSelect:		.asciiz "\n\n >: "
 	gameRulesMessage:	.asciiz "\n     Hello and welcome to MIPS connect 4. Playing this game is quite simple. \n The objective is to fill four slots either horizontally, vertically, or diagonally. \n Your opponent is also trying to do the same and will work to try and interupt you. \n Simply choose a column to drop your token and the board will update to reflect \n your tokens location after it has 'fallen' down the column."
 	returnMessage:		.asciiz "\n\n Enter '0' to return to the main menu."
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	PlayerTurn:		.asciiz "\n PLAYERS TURN"
 	ComputerTurn:		.asciiz "\n COMPUTER TURN"
+	TurnMarker:		.word 1
 	TurnLabel:		.asciiz "\n Turn Count: "
 	TurnCounter:		.word 0
 	
@@ -20,6 +21,18 @@
 	GameBoardRow4:		.asciiz "\n  | _ | _ | _ | _ | _ | _ | _ |"
 	GameBoardRow5:		.asciiz "\n  | _ | _ | _ | _ | _ | _ | _ |"
 	GameBoardRow6:		.asciiz "\n  | _ | _ | _ | _ | _ | _ | _ |\n"
+	
+	InputColumn:		.asciiz "\nPlease select a Column:\n >:"
+	
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	GBoardColumn1Array:	.space	24
+	GBoardColumn2Array:	.space	24
+	GBoardColumn3Array:	.space	24
+	GBoardColumn4Array:	.space	24
+	GBoardColumn5Array:	.space  24
+	GBoardColumn6Array:	.space	24
+	GBoardColumn7Array:	.space	24
 .text
 
 MainMenu:
@@ -48,9 +61,9 @@ MainMenu:
 	la $a0, dividerLine
 	syscall
 	
-#Display the Input character to the user.
+#Display the Menu Selection Character to the user.
 	li $v0, 4
-	la $a0, inputCharacter
+	la $a0, menuSelect
 	syscall
 	
 # Wait for the user menu input.
@@ -65,22 +78,27 @@ MainMenu:
 	
 	beq $v0, 0, Exit
 NewGame:
+	j CompleteTurn
 
+CompleteTurn:
 # Display the divider message to the user. (Step 05)
 	li $v0, 4
 	la $a0, dividerLine
 	syscall
 	
-	li $v0, 4
-	la $a0, PlayerTurn
-	syscall
-	
+	beq $t1, 0, PTurn
+	beq $t1, 1, CTurn
+
+ContinueTurn:
 	li $v0, 4
 	la $a0, TurnLabel
 	syscall
 	
-	li $v0, 4
-	la $a0, TurnCounter
+	addi $t7, $t7, 1
+
+	move $a0, $t7
+	
+	li $v0, 1
 	syscall
 	
 	li $v0, 4
@@ -116,15 +134,32 @@ NewGame:
 	la $a0, dividerLine
 	syscall
 	
-#Display the Input character to the user.
+#Display the Input Column Selector to the user.
 	li $v0, 4
-	la $a0, inputCharacter
+	la $a0, InputColumn
 	syscall
 	
 	li $v0, 5
 	syscall
 	
+	j CompleteTurn
+
+PTurn:
+	li $v0, 4
+	la $a0, PlayerTurn
+	syscall
 	
+	addi $t1, $zero, 1
+	
+	j ContinueTurn
+CTurn:
+	li $v0, 4
+	la $a0, ComputerTurn
+	syscall
+	
+	addi $t1, $zero, 0
+	
+	j ContinueTurn
 GameRules:
 	li $v0, 4
 	la $a0, dividerLine
@@ -143,7 +178,7 @@ GameRules:
 	syscall
 	
 	li $v0, 4
-	la $a0, inputCharacter
+	la $a0, menuSelect
 	syscall
 
 	li $v0, 5
